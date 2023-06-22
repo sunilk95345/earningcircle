@@ -6,34 +6,13 @@ const nextConfig = {
 
 
 module.exports = {
-  async rewrites() {
-    return {
-      beforeFiles: [
-        // These rewrites are checked after headers/redirects
-        // and before all files including _next/public files which
-        // allows overriding page files
-        {
-          source: '/some-page',
-          destination: '/somewhere-else',
-          has: [{ type: 'query', key: 'overrideMe' }],
-        },
-      ],
-      afterFiles: [
-        // These rewrites are checked after pages/public files
-        // are checked but before dynamic routes
-        {
-          source: '/non-existent',
-          destination: '/somewhere-else',
-        },
-      ],
-      fallback: [
-        // These rewrites are checked after both pages/public files
-        // and dynamic routes are checked
-        {
-          source: '/:path*',
-          destination: `https://lifelinejob.com/:path*`,
-        },
-      ],
-    }
+  async redirects() {
+    return [
+      {
+        source: '/:slug',
+        destination: 'https://lifelinejob.com/:slug', // Matched parameters can be used in the destination
+        permanent: true,
+      },
+    ]
   },
 }
