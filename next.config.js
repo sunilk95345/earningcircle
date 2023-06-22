@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
 }
 
-module.exports = nextConfig
+
 module.exports = {
   async rewrites() {
     return {
